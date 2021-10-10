@@ -19,3 +19,9 @@ Implement the MinStack class:
  * param_4 := obj.GetMin();
  */
  ```
+
+
+# Solution
+This can be solved using two stacks: one to store actual values and another to store min values.
+My solution implements stack using doubly linked list and it's pretty slow.
+Other stack implementations might work better.
