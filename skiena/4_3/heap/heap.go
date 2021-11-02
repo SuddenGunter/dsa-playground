@@ -2,6 +2,17 @@ package heap
 
 import "errors"
 
+var minDominatesComparator = func(a, b float64) int8 {
+	switch {
+	case a > b:
+		return 1
+	case a < b:
+		return -1
+	default:
+		return 0
+	}
+}
+
 type Heap struct {
 	body       []float64
 	comparator func(a, b float64) int8
@@ -9,24 +20,36 @@ type Heap struct {
 
 func NewHeap() *Heap {
 	return &Heap{
-		body: []float64{},
-		comparator: func(a, b float64) int8 {
-			switch {
-			case a > b:
-				return 1
-			case a < b:
-				return -1
-			default:
-				return 0
-			}
-		},
+		body:       []float64{},
+		comparator: minDominatesComparator,
 	}
 }
 
 func FromSlice(data []float64) *Heap {
-	h := NewHeap()
+	h := &Heap{
+		body:       make([]float64, 0, cap(data)),
+		comparator: minDominatesComparator,
+	}
+
 	for _, v := range data {
 		h.Insert(v)
+	}
+
+	return h
+}
+
+func FromSliceFast(data []float64) *Heap {
+	h := &Heap{
+		body:       make([]float64, cap(data), cap(data)),
+		comparator: minDominatesComparator,
+	}
+
+	for i, v := range data {
+		h.body[i] = v
+	}
+
+	for i := len(h.body)/2 - 1; i >= 0; i-- {
+		h.bubbleDown(i)
 	}
 
 	return h

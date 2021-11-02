@@ -27,6 +27,27 @@ func Test_FromSlice_ArrangesDataCorrectly(t *testing.T) {
 	assert.True(t, isValidHeap(h))
 }
 
+func Test_FromSliceFast_ArrangesDataCorrectly(t *testing.T) {
+	src := []float64{1492, 1941, 2001, 1918, 1963, 1865}
+	h := FromSliceFast(src)
+
+	assert.True(t, isValidHeap(h))
+}
+
+func Benchmark_FromSlice_ArrangesDataCorrectly(t *testing.B) {
+	src := []float64{1492, 1941, 2001, 1918, 1963, 1865, 5, 4, 3, 2, 1}
+	h := FromSlice(src)
+	t.StopTimer()
+	assert.True(t, isValidHeap(h))
+}
+
+func Benchmark_FromSliceFast_ArrangesDataCorrectly(t *testing.B) {
+	src := []float64{1492, 1941, 2001, 1918, 1963, 1865, 5, 4, 3, 2, 1}
+	h := FromSliceFast(src)
+	t.StopTimer()
+	assert.True(t, isValidHeap(h))
+}
+
 func Test_TakeTop_ArrangesDataCorrectly(t *testing.T) {
 	src := []float64{1492, 1941, 2001, 1918, 1963, 1865}
 	h := FromSlice(src)
