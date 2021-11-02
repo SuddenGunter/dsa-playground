@@ -42,3 +42,12 @@ func Test_TakeTop_ArrangesDataCorrectly(t *testing.T) {
 	assert.True(t, isValidHeap(h))
 	assert.Equal(t, 1865., top)
 }
+
+func Test_Heapsort_SortsCorrectly(t *testing.T) {
+	src := []float64{1492, 1941, 2001, 1918, 1963, 1865}
+	expected := []float64{1492, 1865, 1918, 1941, 1963, 2001}
+
+	result := Heapsort(src)
+
+	assert.ElementsMatch(t, expected, result)
+}

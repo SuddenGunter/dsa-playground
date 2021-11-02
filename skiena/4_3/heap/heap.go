@@ -32,6 +32,16 @@ func FromSlice(data []float64) *Heap {
 	return h
 }
 
+func Heapsort(data []float64) []float64 {
+	buffer := make([]float64, 0, cap(data))
+	h := FromSlice(data)
+	for i := 0; i < cap(buffer); i++ {
+		top, _ := h.TakeTop()
+		buffer = append(buffer, top)
+	}
+	return buffer
+}
+
 // todo: issue because indexes starts from 1
 func (h *Heap) parentIndexOf(child int) int {
 	child += 1
