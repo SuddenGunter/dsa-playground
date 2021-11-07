@@ -1,20 +1,21 @@
 package mergesort
 
 import (
-	"math"
 	"sync"
 
 	"github.com/SuddenGunter/dsa-playground/skiena/4/queue"
 )
 
-const maxWorkers = 8
-
-var maxDepth = int(math.Log2(maxWorkers))
+var maxDepth = int(2)
 
 func ConcurrentSort(src []float64) []float64 {
+	if len(src) == 0 {
+		return src
+	}
+
 	resultsListener := make(chan float64)
 	results := make([]float64, 0, cap(src))
-	concurrentMergeSort(src, 1, resultsListener)
+	go concurrentMergeSort(src, 1, resultsListener)
 	for v := range resultsListener {
 		results = append(results, v)
 	}
@@ -23,6 +24,15 @@ func ConcurrentSort(src []float64) []float64 {
 }
 
 func concurrentMergeSort(src []float64, depth int, results chan float64) {
+	if depth >= maxDepth {
+		for _, v := range Sort(src) {
+			results <- v
+		}
+		close(results)
+
+		return
+	}
+
 	if len(src) > 1 {
 		middle := len(src) / 2
 		leftResults := make(chan float64)
