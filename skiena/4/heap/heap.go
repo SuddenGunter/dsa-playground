@@ -65,7 +65,6 @@ func Heapsort(data []float64) []float64 {
 	return buffer
 }
 
-// todo: issue because indexes starts from 1
 func (h *Heap) parentIndexOf(child int) int {
 	child += 1
 
