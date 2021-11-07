@@ -6,14 +6,14 @@ import (
 	"github.com/SuddenGunter/dsa-playground/skiena/4/queue"
 )
 
-var maxDepth = int(2)
+var maxDepth = int(4)
 
 func ConcurrentSort(src []float64) []float64 {
 	if len(src) == 0 {
 		return src
 	}
 
-	resultsListener := make(chan float64)
+	resultsListener := make(chan float64, maxDepth)
 	results := make([]float64, 0, cap(src))
 	go concurrentMergeSort(src, 1, resultsListener)
 	for v := range resultsListener {
@@ -35,8 +35,8 @@ func concurrentMergeSort(src []float64, depth int, results chan float64) {
 
 	if len(src) > 1 {
 		middle := len(src) / 2
-		leftResults := make(chan float64)
-		rightResults := make(chan float64)
+		leftResults := make(chan float64, len(src)/2)
+		rightResults := make(chan float64, len(src)/2)
 
 		go concurrentMergeSort(src[0:middle], depth+1, leftResults)
 		go concurrentMergeSort(src[middle:], depth+1, rightResults)
@@ -52,7 +52,7 @@ func concurrentMergeSort(src []float64, depth int, results chan float64) {
 }
 
 func concurrentMerge(left, right chan float64) chan float64 {
-	res := make(chan float64)
+	res := make(chan float64, maxDepth)
 	leftBuf := queue.NewQueue()
 	rightBuf := queue.NewQueue()
 
