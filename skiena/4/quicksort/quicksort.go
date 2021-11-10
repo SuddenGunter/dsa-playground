@@ -1,5 +1,7 @@
 package quicksort
 
+import "math/rand"
+
 func Sort(src []float64) []float64 {
 	result := make([]float64, len(src))
 	copy(result, src)
@@ -21,30 +23,19 @@ func sort(result []float64) {
 }
 
 func partition(src []float64) int {
-	pivot := 0
+	firstHigh := 0
 
-	firstHigh := len(src) - 1
-	lastLow := 0
+	pivot := rand.Int() % len(src)
+	src[len(src)-1], src[pivot] = src[pivot], src[len(src)-1]
 
-	for lastLow < firstHigh {
-		if src[lastLow] > src[pivot] {
-			for firstHigh > lastLow {
-				if src[firstHigh] < src[pivot] {
-					src[lastLow], src[firstHigh] = src[firstHigh], src[lastLow]
-					firstHigh--
-					break
-				}
-				firstHigh--
-			}
-		} else {
-			lastLow++
+	for i := range src[:len(src)-1] {
+		if src[i] < src[len(src)-1] {
+			src[i], src[firstHigh] = src[firstHigh], src[i]
+			firstHigh++
 		}
 	}
 
-	if src[lastLow] < src[pivot] {
-		src[lastLow], src[pivot] = src[pivot], src[lastLow]
-		return lastLow
-	}
+	src[len(src)-1], src[firstHigh] = src[firstHigh], src[len(src)-1]
 
-	return pivot
+	return firstHigh
 }
