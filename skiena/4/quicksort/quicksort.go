@@ -1,25 +1,32 @@
 package quicksort
 
-import "math/rand"
+import (
+	"math/rand"
+	"sync"
+)
 
 func Sort(src []float64) []float64 {
 	result := make([]float64, len(src))
 	copy(result, src)
 
-	sort(result)
-
+	wg := &sync.WaitGroup{}
+	wg.Add(1)
+	sort(result, wg)
+	wg.Wait()
 	return result
 }
 
-func sort(result []float64) {
+func sort(result []float64, wg *sync.WaitGroup) {
+	defer wg.Done()
 	if len(result) < 2 {
 		return
 	}
 
 	p := partition(result)
 
-	sort(result[:p])
-	sort(result[p+1:])
+	wg.Add(2)
+	go sort(result[:p], wg)
+	go sort(result[p+1:], wg)
 }
 
 func partition(src []float64) int {
