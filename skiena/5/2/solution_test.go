@@ -30,5 +30,3 @@ func Test_FindMissingFirstMid(t *testing.T) {
 
 	assert.Equal(t, 2, missing)
 }
-
-// todo: test if missing first mid
