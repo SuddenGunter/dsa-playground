@@ -52,3 +52,21 @@ func TestFindMedianSortedArrays_Example5(t *testing.T) {
 
 	assert.Equal(t, 2., result)
 }
+
+func TestFindMedianSortedArrays_Example6(t *testing.T) {
+	nums1 := []int{1, 3, 8, 9, 15}
+	nums2 := []int{7, 11, 18, 19, 21, 25}
+
+	result := solution.FindMedianSortedArrays(nums1, nums2)
+
+	assert.Equal(t, 11., result)
+}
+
+func TestFindMedianSortedArrays_Example7(t *testing.T) {
+	nums1 := []int{23, 26, 31, 35}
+	nums2 := []int{3, 5, 7, 9, 11, 16}
+
+	result := solution.FindMedianSortedArrays(nums1, nums2)
+
+	assert.Equal(t, 13.5, result)
+}
