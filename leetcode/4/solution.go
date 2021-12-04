@@ -2,7 +2,7 @@ package solution
 
 import "math"
 
-func FindMedianSortedArrays(x []int, y []int) float64 {
+func FindMedianSortedArrays(x, y []int) float64 {
 	if len(x) > len(y) {
 		y, x = x, y
 	}
@@ -35,7 +35,6 @@ func FindMedianSortedArrays(x []int, y []int) float64 {
 }
 
 func max(a, b float64) float64 {
-
 	if a > b {
 		return a
 	}
@@ -51,7 +50,7 @@ func min(a, b float64) float64 {
 	return b
 }
 
-func foundMidpoint(x []int, y []int, partitionX int, partitionY int) bool {
+func foundMidpoint(x, y []int, partitionX, partitionY int) bool {
 	return maxLeft(x, partitionX) <= minRight(y, partitionY) && maxLeft(y, partitionY) <= minRight(x, partitionX)
 }
 
