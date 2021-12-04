@@ -3,9 +3,9 @@ package solution_test
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	solution "github.com/SuddenGunter/dsa-playground/leetcode/53/kadane"
 
-	solution "github.com/SuddenGunter/dsa-playground/leetcode/53"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestMaxSubArraySum_Example1(t *testing.T) {
@@ -30,4 +30,12 @@ func TestMaxSubArraySum_Example3(t *testing.T) {
 	result := solution.MaxSubArraySum(nums)
 
 	assert.Equal(t, 23, result)
+}
+
+func TestMaxSubArraySum_Example4(t *testing.T) {
+	nums := []int{-1}
+
+	result := solution.MaxSubArraySum(nums)
+
+	assert.Equal(t, -1, result)
 }
