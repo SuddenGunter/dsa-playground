@@ -1,19 +1,24 @@
 package solution
 
+import "math"
+
 func FindMedianSortedArrays(x []int, y []int) float64 {
 	if len(x) > len(y) {
 		y, x = x, y
 	}
 
 	start := 0
-	end := len(x) - 1
+	end := len(x)
 
 	partitionX := (start + end) / 2
 	partitionY := (len(x)+len(y)+1)/2 - partitionX
 
 	for !foundMidpoint(x, y, partitionX, partitionY) {
-		start = partitionX + 1
-		end = len(x) - 1
+		if maxLeft(x, partitionX) > minRight(y, partitionY) {
+			end = partitionX - 1
+		} else {
+			start = partitionX + 1
+		}
 
 		partitionX = (start + end) / 2
 		partitionY = (len(x)+len(y)+1)/2 - partitionX
@@ -21,30 +26,47 @@ func FindMedianSortedArrays(x []int, y []int) float64 {
 
 	switch (len(x) + len(y)) % 2 {
 	case 0:
-		return float64(max(x[partitionX-1], y[partitionY-1])+min(x[partitionX], y[partitionY])) / 2
+		return (max(maxLeft(x, partitionX), maxLeft(y, partitionY)) + min(minRight(x, partitionX), minRight(y, partitionY))) / 2
 	case 1:
-		return float64(max(x[partitionX-1], y[partitionY-1]))
+		return max(maxLeft(x, partitionX), maxLeft(y, partitionY))
 	}
 
 	return 0
 }
 
-func max(a, b int) int {
+func max(a, b float64) float64 {
+
 	if a > b {
-		return int(a)
+		return a
 	}
 
-	return int(b)
+	return b
 }
 
-func min(a, b int) int {
+func min(a, b float64) float64 {
 	if a < b {
-		return int(a)
+		return a
 	}
 
-	return int(b)
+	return b
 }
 
 func foundMidpoint(x []int, y []int, partitionX int, partitionY int) bool {
-	return x[partitionX-1] <= y[partitionY] && y[partitionY-1] <= x[partitionX]
+	return maxLeft(x, partitionX) <= minRight(y, partitionY) && maxLeft(y, partitionY) <= minRight(x, partitionX)
+}
+
+func maxLeft(arr []int, partition int) float64 {
+	if partition == 0 {
+		return math.Inf(-1)
+	}
+
+	return float64(arr[partition-1])
+}
+
+func minRight(arr []int, partition int) float64 {
+	if partition == len(arr) {
+		return math.Inf(1)
+	}
+
+	return float64(arr[partition])
 }

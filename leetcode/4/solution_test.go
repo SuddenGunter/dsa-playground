@@ -46,7 +46,7 @@ func TestFindMedianSortedArrays_Example4(t *testing.T) {
 
 func TestFindMedianSortedArrays_Example5(t *testing.T) {
 	nums1 := []int{2}
-	nums2 := []int{1}
+	nums2 := []int{}
 
 	result := solution.FindMedianSortedArrays(nums1, nums2)
 
