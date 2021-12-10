@@ -25,4 +25,4 @@ For the purpose of this problem, we will return 0 when needle is an empty string
 
 
 # Solution
-This repository contains two solutions: naive and Knuth–Morris–Pratt algorithm.
+This repository contains two solutions: naive (with early return if unchecked haystack len is less than needle) and Knuth–Morris–Pratt algorithm.
