@@ -9,7 +9,7 @@ func StrStr(haystack, needle string) int {
 		return -1
 	}
 
-	for i := 0; i < len(haystack); {
+	for i := 0; i < len(haystack); i++ {
 		if haystack[i] == needle[0] {
 			matches := true
 
@@ -25,13 +25,7 @@ func StrStr(haystack, needle string) int {
 
 			if matches && j == len(needle) {
 				return i
-			} else {
-				// skip partial match
-				i += j - 1
 			}
-		} else {
-			// no partial match found, skip single char
-			i++
 		}
 	}
 

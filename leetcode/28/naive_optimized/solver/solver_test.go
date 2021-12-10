@@ -3,7 +3,7 @@ package solver_test
 import (
 	"testing"
 
-	"github.com/SuddenGunter/dsa-playground/leetcode/28/naive/solver"
+	"github.com/SuddenGunter/dsa-playground/leetcode/28/naive_optimized/solver"
 	"github.com/stretchr/testify/assert"
 )
 
