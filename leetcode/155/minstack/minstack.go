@@ -14,7 +14,6 @@ func Constructor() MinStack {
 	return MinStack{
 		minimums: minimums,
 	}
-
 }
 
 func (l *MinStack) Push(val int) {
