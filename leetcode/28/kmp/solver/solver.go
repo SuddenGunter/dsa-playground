@@ -31,18 +31,17 @@ func StrStr(haystack, needle string) int {
 		if needle[j] == haystack[i] {
 			i++
 			j++
-		}
-
-		if j == len(needle) {
-			return i - j
-		}
-
-		if i < len(haystack) && needle[j] != haystack[i] {
-			if j != 0 {
-				j = prefixArray[j-1]
-			} else {
-				i++
+			if j == len(needle) {
+				return i - j
 			}
+
+			continue
+		}
+
+		if j != 0 {
+			j = prefixArray[j-1]
+		} else {
+			i++
 		}
 	}
 
