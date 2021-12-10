@@ -96,3 +96,21 @@ func TestExample10(t *testing.T) {
 
 	assert.Equal(t, -1, res)
 }
+
+func TestExample11(t *testing.T) {
+	haystack := "mississippi"
+	needle := "sippi"
+
+	res := solver.StrStr(haystack, needle)
+
+	assert.Equal(t, 6, res)
+}
+
+func TestExample12(t *testing.T) {
+	haystack := "aabaaabaaac"
+	needle := "aabaaac"
+
+	res := solver.StrStr(haystack, needle)
+
+	assert.Equal(t, 4, res)
+}
