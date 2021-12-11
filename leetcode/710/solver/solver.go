@@ -16,7 +16,7 @@ func Constructor(n int, blacklist []int) Solution {
 
 	for _, v := range blacklist {
 		if v >= divider {
-			tempAllowList = remove(tempAllowList, v-divider)
+			tempAllowList = remove(tempAllowList, find(tempAllowList, v))
 		}
 	}
 
@@ -42,6 +42,16 @@ func (this *Solution) Pick() int {
 	}
 
 	return int(num)
+}
+
+func find(s []int, v int) int {
+	for i := range s {
+		if s[i] == v {
+			return i
+		}
+	}
+
+	return -1
 }
 
 func remove(s []int, i int) []int {
