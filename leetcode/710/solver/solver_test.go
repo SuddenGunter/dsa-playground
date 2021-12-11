@@ -87,5 +87,3 @@ func TestExample5(t *testing.T) {
 
 	assert.Len(t, picked, upperLimit-len(blocklist))
 }
-
-// todo: odd/even sizes of n and blocklist
