@@ -8,6 +8,10 @@ type Node struct {
 }
 
 func Build(nodes []int) *Node {
+	if len(nodes) == 0 {
+		return nil
+	}
+
 	iterator := 0
 
 	root := &Node{

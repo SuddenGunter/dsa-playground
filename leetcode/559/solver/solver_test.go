@@ -9,14 +9,6 @@ import (
 	"github.com/SuddenGunter/dsa-playground/leetcode/559/solver"
 )
 
-//func TestExample0(t *testing.T) {
-//	root := solver.Build([]int{1, math.MinInt, 2, 3})
-//
-//	result := solver.Solve(root)
-//
-//	assert.Equal(t, 3, result)
-//}
-
 func TestExample1(t *testing.T) {
 	root := solver.Build([]int{1, math.MinInt, 3, 2, 4, math.MinInt, 5, 6})
 
