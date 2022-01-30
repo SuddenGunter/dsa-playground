@@ -10,18 +10,22 @@ func Solve(moves [][]int) string {
 	aMoves := true
 	var state [size][size]rune
 
-	emptyFound := false
 	won := false
 	winner := rune(0)
 
-	for _, m := range moves {
+	for step, m := range moves {
 		if aMoves {
 			state[m[0]][m[1]] = 'A'
 		} else {
 			state[m[0]][m[1]] = 'B'
 		}
 
-		winner, won, emptyFound = checkWinners(state)
+		// cannot win for the first few steps
+		if step < size-1 {
+			aMoves = !aMoves
+			continue
+		}
+		winner, won = checkWinners(state)
 		//prettyPrint(state)
 		//fmt.Println()
 		if won {
@@ -31,21 +35,18 @@ func Solve(moves [][]int) string {
 		aMoves = !aMoves
 	}
 
-	if emptyFound {
+	if len(moves) < size*size {
 		return "Pending"
 	}
 
 	return "Draw"
 }
 
-func checkWinners(state [size][size]rune) (rune, bool, bool) {
-	emptyElementFound := false
-
+func checkWinners(state [size][size]rune) (rune, bool) {
 	// by row
 	for i := 0; i < size; i++ {
 		prev := state[i][0]
 		if prev == rune(0) {
-			emptyElementFound = true
 			break
 		}
 		prevWon := true
@@ -58,7 +59,7 @@ func checkWinners(state [size][size]rune) (rune, bool, bool) {
 		}
 
 		if prevWon {
-			return prev, prevWon, emptyElementFound
+			return prev, prevWon
 		}
 	}
 
@@ -66,7 +67,6 @@ func checkWinners(state [size][size]rune) (rune, bool, bool) {
 	for j := 0; j < size; j++ {
 		prev := state[0][j]
 		if prev == rune(0) {
-			emptyElementFound = true
 			break
 		}
 		prevWon := true
@@ -79,7 +79,7 @@ func checkWinners(state [size][size]rune) (rune, bool, bool) {
 		}
 
 		if prevWon {
-			return prev, prevWon, emptyElementFound
+			return prev, prevWon
 		}
 	}
 
@@ -100,12 +100,11 @@ func checkWinners(state [size][size]rune) (rune, bool, bool) {
 			j++
 		}
 	} else {
-		emptyElementFound = true
 		prevWon = false
 	}
 
 	if prevWon {
-		return prev, prevWon, emptyElementFound
+		return prev, prevWon
 	}
 
 	// by diag bottom left -> top right
@@ -125,24 +124,12 @@ func checkWinners(state [size][size]rune) (rune, bool, bool) {
 			j++
 		}
 	} else {
-		emptyElementFound = true
 		prevWon = false
 	}
 
 	if prevWon {
-		return prev, prevWon, emptyElementFound
+		return prev, prevWon
 	}
 
-	if !emptyElementFound {
-		for i := range state {
-			for j := range state[i] {
-				if state[i][j] == rune(0) {
-					emptyElementFound = true
-					break
-				}
-			}
-		}
-	}
-
-	return 0, false, emptyElementFound
+	return 0, false
 }
