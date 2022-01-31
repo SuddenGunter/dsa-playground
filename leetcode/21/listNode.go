@@ -10,22 +10,23 @@ func FromSlice(slice []int) *ListNode {
 		return nil
 	}
 
-	head := ListNode{
+	current := &ListNode{
 		Val:  slice[0],
 		Next: nil,
 	}
 
-	current := head
+	head := current
 
 	for _, v := range slice[1:] {
-		next := ListNode{
+		next := &ListNode{
 			Val:  v,
 			Next: nil,
 		}
 
-		current.Next = &next
+		current.Next = next
+
 		current = next
 	}
 
-	return &head
+	return head
 }
