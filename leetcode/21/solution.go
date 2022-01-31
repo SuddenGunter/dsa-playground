@@ -1,6 +1,6 @@
 package solution
 
-func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+func mergeTwoLists(list1, list2 *ListNode) *ListNode {
 	if list1 == nil {
 		return list2
 	}
@@ -40,7 +40,7 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	return *head
 }
 
-func onlyOneNotNil(p1 *ListNode, p2 *ListNode) *ListNode {
+func onlyOneNotNil(p1, p2 *ListNode) *ListNode {
 	if p1 == nil {
 		return p2
 	}
