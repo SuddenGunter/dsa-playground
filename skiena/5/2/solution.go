@@ -20,9 +20,7 @@ func FindMissing(src []int) int {
 			// check right subarray
 
 			low = mid + 1
-
 		} else {
-
 			// check left subarray
 			high = mid - 1
 		}
