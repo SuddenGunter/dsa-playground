@@ -20,3 +20,6 @@ Return the head of the merged linked list.
     
     Input: list1 = [], list2 = [0]
     Output: [0]
+
+## Solution
+Simplified mergesort.
