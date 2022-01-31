@@ -1,4 +1,4 @@
-package solver
+package solution
 
 func twoSum(nums []int, target int) []int {
 	toFind := make(map[int]int, len(nums))
