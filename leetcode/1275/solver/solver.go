@@ -21,7 +21,7 @@ func Solve(moves [][]int) string {
 		}
 
 		// cannot win for the first few steps
-		if step < size-1 {
+		if step < size*2-2 {
 			aMoves = !aMoves
 			continue
 		}
