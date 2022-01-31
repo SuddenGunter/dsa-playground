@@ -35,17 +35,7 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	}
 
 	nn := onlyOneNotNil(p1, p2)
-	for nn != nil {
-		next := &ListNode{
-			Val:  nn.Val,
-			Next: nil,
-		}
-
-		current.Next = next
-
-		current = next
-		nn = nn.Next
-	}
+	current.Next = nn
 
 	return *head
 }
