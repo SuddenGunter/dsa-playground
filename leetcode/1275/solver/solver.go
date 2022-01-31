@@ -26,8 +26,8 @@ func Solve(moves [][]int) string {
 			continue
 		}
 		winner, won = checkWinners(state)
-		//prettyPrint(state)
-		//fmt.Println()
+		// prettyPrint(state)
+		// fmt.Println()
 		if won {
 			return string(winner)
 		}

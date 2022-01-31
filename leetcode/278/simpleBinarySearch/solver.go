@@ -11,7 +11,7 @@ func firstBadVersion(n int) int {
 	return binarySearch(n, low, high)
 }
 
-func binarySearch(n int, low, high int) int {
+func binarySearch(n, low, high int) int {
 	if high-low == 1 {
 		if isBadVersion(low) {
 			return low

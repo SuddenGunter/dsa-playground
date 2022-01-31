@@ -52,5 +52,4 @@ func TestSort_OnEmptyArray(t *testing.T) {
 	result := Sort(input)
 
 	assert.Equal(t, expected, result)
-
 }

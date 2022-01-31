@@ -52,5 +52,4 @@ func TestConcurrentSort_OnEmptyArray(t *testing.T) {
 	result := ConcurrentSort(input)
 
 	assert.Equal(t, expected, result)
-
 }
