@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func main() {
+func main1() {
 	fs := NewFixedCapacityStackOfStrings(100)
 	for _, x := range input() {
 		if x != "-" {
@@ -16,6 +16,26 @@ func main() {
 	}
 
 	fmt.Printf("(%v left on stack)", fs.Size())
+}
+
+func main2() {
+	fs := NewFixedCapacityStack[string](100)
+	for _, x := range input() {
+		if x != "-" {
+			fs.Push(x)
+		} else if !fs.Empty() {
+			fmt.Printf("%v ", fs.Pop())
+		}
+	}
+
+	fmt.Printf("(%v left on stack)", fs.Size())
+}
+
+func main() {
+	fmt.Println()
+	main1()
+	fmt.Println()
+	main2()
 }
 
 // public static void main(String[] args)
