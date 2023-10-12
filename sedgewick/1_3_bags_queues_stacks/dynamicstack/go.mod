@@ -1,3 +1,3 @@
-module fixedstack
+module dynamicstack
 
 go 1.21.1
