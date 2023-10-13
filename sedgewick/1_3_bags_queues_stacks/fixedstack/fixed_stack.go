@@ -29,3 +29,7 @@ func (fs *FixedCapacityStackOfStrings) Empty() bool {
 func (fs *FixedCapacityStackOfStrings) Size() int {
 	return fs.pos
 }
+
+func (fs *FixedCapacityStackOfStrings) IsFull() bool {
+	return fs.pos == len(fs.storage)
+}
