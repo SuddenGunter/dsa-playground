@@ -15,13 +15,13 @@ func NewQueue[T any]() *Queue[T] {
 }
 
 func (s *Queue[T]) Enqueue(item T) {
-	if s.first == nil {
-		s.first = &node[T]{
+	if s.Empty() {
+		s.last = &node[T]{
 			item: item,
 			next: nil,
 		}
 
-		s.last = s.first
+		s.first = s.last
 
 		return
 	}
@@ -35,13 +35,12 @@ func (s *Queue[T]) Enqueue(item T) {
 }
 
 func (s *Queue[T]) Dequeue() T {
-	if s.first == nil {
-		var zero T
-		return zero
-	}
-
 	result := s.first.item
 	s.first = s.first.next
+
+	if s.Empty() {
+		s.last = nil
+	}
 
 	return result
 }

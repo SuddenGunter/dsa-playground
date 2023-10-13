@@ -31,11 +31,6 @@ func (s *Stack[T]) Push(item T) {
 }
 
 func (s *Stack[T]) Pop() T {
-	if s.first == nil {
-		var zero T
-		return zero
-	}
-
 	result := s.first.item
 	s.first = s.first.next
 
