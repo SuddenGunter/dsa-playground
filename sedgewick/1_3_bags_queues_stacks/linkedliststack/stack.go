@@ -50,6 +50,10 @@ func (s *Stack[T]) Size() int {
 	return size
 }
 
+func (s Stack[T]) Peek() T {
+	return s.first.item
+}
+
 func (s *Stack[T]) Iteartor() Iterator[T] {
 	return &linkedListIterator[T]{
 		next: s.first,
