@@ -1,3 +1,7 @@
+# UPD: 9 June 2024
+
+Current implementation is broken and may (or may not) be fixed later
+
 # 710. Random Pick with Blacklist
 
 You are given an integer n and an array of unique integers blacklist.
