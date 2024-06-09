@@ -1,6 +1,10 @@
 package minstack
 
-import "github.com/SuddenGunter/dsa-playground/leetcode/155/linkedlist"
+import (
+	"math"
+
+	"github.com/SuddenGunter/dsa-playground/leetcode/155/linkedlist"
+)
 
 // MinStack implemented on top of the doubly linked list.
 type MinStack struct {
@@ -10,7 +14,7 @@ type MinStack struct {
 
 func Constructor() MinStack {
 	minimums := &linkedlist.DoublyLinkedList{}
-	minimums.Prepend(1<<(32<<(^uint(0)>>63)-1) - 1)
+	minimums.Prepend(math.MaxInt)
 	return MinStack{
 		minimums: minimums,
 	}
